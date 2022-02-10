@@ -6,7 +6,7 @@
 
 using namespace std;
 
-
+//rgrbgergj
 
 
 const int KNAME=32;
