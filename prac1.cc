@@ -52,30 +52,31 @@ Hero createHero(){
     
 
   //inicializar una STRUCT
-  Hero mihero;
+  Hero myhero;
   
       //Variable para decirnos si el nombre que se ha introducido es correcto
       bool nombrecorrecto = true;
   
-      //Bucle do que como minimo se ejecuta una vez lo que hay dentro hasta
+      //Bucle do que como minimo se ejecuta una vez lo que hay dentro hasta 
       //que NO se cumpla la condicion del while
       do{
         nombrecorrecto = true;
         cout << "Enter hero name: ";
-        cin.getline(mihero.name,KNAME-1);
+        cin.getline(myhero.name,KNAME-1);
   
         //Comprobamos solamente el primer caracter del nombre si es letra o no
-        if(!isalpha(mihero.name[0])){
+        if(!isalpha(myhero.name[0])){
           nombrecorrecto = false;
         }
         
-        //For para comprobar cada uno de los caracteres del nombre si coincide con 
+        //Bugle FOR para comprobar cada uno de los caracteres del nombre si coincide con 
         //las condiciones que se nos pide
-        for(int i=0 ; i<strlen(mihero.name) ; i++){
-          if(!isalpha(mihero.name[i]) and !isdigit(mihero.name[i])){
+        int i ;
+        for( i=0 ; i < (int) strlen(myhero.name) ; i++){
+          if(!isalpha(myhero.name[i]) and !isdigit(myhero.name[i])){
             nombrecorrecto=false;
-            break; //Una vez que encontremos el error ya CONFIRMAMOS EL ERROR y no 
-            //hace falta seguir recorriendo el bucle
+            break; //Una vez que encontremos el error,ya CONFIRMAMOS EL ERROR y no 
+                  //hace falta seguir recorriendo el bucle
           }
         }
   
@@ -86,14 +87,50 @@ Hero createHero(){
   
       }while(nombrecorrecto == false);
       
-      return mihero;
+
+    //inicial el struct CORE
+    Core puntos;
+    char barra;
+    int suma;
+    float porcentage;
+    
 
 
-  
-}
+    do{
 
-Enemy createEnemy(){
-}
+      do{
+
+        cout << "Enter attack and defense:" ;
+        cin >> puntos.attack ; cin >> barra ; cin >> puntos.defense;
+
+        suma = puntos.attack + puntos.defense;
+        
+        if (puntos.attack<0 || puntos.defense<0 || suma != 100 || barra != '/' ) {
+          cout << "Error: wrong distribution" << endl;
+        };
+
+      }while(barra != '/' || puntos.attack<0 || puntos.defense<0 || suma != 100 );
+
+      
+
+      if (suma > 100 || suma == 100){
+        
+        porcentage = (float) puntos.defense / (float) 100 ;
+        puntos.hp = ( porcentage * KPOINTS * 2 ) ;
+        cout << "Puntos de vida:" << puntos.hp ;
+      };
+
+    }while(suma != 100 || suma < 100 );
+
+
+
+
+    return myhero;
+
+    }
+
+//Enemy createEnemy(){
+//}
 
 void fight(Hero &hero,Enemy &enemy){
 }
@@ -128,22 +165,13 @@ int main(int argc,char *argv[]){
     
     createHero();
 
+
+
     
+  
     
-    
-    
-    
-    
-    
+    return 0;
     // Aquí vendrá todo tu código del "main"...
   }
 }
-
-
-
-
-
-
-
-
 
